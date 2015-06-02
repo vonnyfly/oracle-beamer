@@ -1,0 +1,17 @@
+%http://stackoverflow.com/questions/25279614/inserting-images-in-markdown-garbles-latex-background-image
+\mode<presentation>
+\beamertemplatenavigationsymbolsempty
+\usecolortheme[RGB={36,130,204}]{structure}
+\setbeamerfont{monotype}{size=\tiny}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{title}{size=\Huge}
+\setbeamerfont{normal text}{size=\small}
+\useinnertheme{circles}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{background.png}}
+\pgfdeclareimage[width=\textwidth, height=2\paperheight]{firstpage}{firstpage.png}
+
+\titlegraphic{\pgfuseimage{firstpage}}
+
+\mode
+<all>
