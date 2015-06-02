@@ -1,0 +1,82 @@
+%%%%%%
+% Now the toughest part--at least for me--customizing the title page.
+% Putting a logo on the title page and text beside it was quite a difficult task and to be fairly honest, my code is not effecient at all. At the very least, it is plain clumsy.
+% Though it does solve the purpose (I hate to use this phrase) it is neither "neat" nor "cool".
+% Anyway, let's see how we went about it.
+% For the title page, we needed a logo on the left, a vertical separater line, and finally a place for the title, author, date etc. 
+
+
+\usepackage{pgfcomp-version-0-65}
+\usepackage{color}
+
+% First, let's create the line
+\newcommand{\TitleLine}{%
+  \raisebox{-12mm}[0pt][0pt]{%
+    \begin{pgfpicture}{0mm}{0mm}{0mm}{0mm}
+       \pgfsetlinewidth{0.10mm}
+        \pgfline{\pgfpoint{55mm}{0mm}}{\pgfpoint{55mm}{50mm}}
+    \end{pgfpicture}}}
+
+
+
+% Now let's create commands for the title etc., that we can call later
+
+% Title
+\newcommand{\MyTitle}{%
+  \hspace*{-50mm}\vspace{-60mm}
+        \centering \inserttitle}
+        
+% Subtitle        
+\newcommand{\MySubTitle}{%
+  \hspace*{-50mm}\vspace{-60mm}
+      \centering  \footnotesize \textit{\insertsubtitle}}
+      
+% Author      
+ \newcommand{\MyAuthor}{    
+  \hspace*{-50mm}\vspace{-60mm}
+    \centering \insertauthor}
+    
+% Institute   
+ \newcommand{\MyInstitute}{     
+  \hspace*{-50mm}\vspace{-60mm}
+    \centering \footnotesize \textit{\insertinstitute}}
+
+% Date      
+ \newcommand{\MyDate}{    
+  \hspace*{-50mm}\vspace{-60mm}
+    \centering  \insertdate}
+    
+% We declare the image that will be used as the logo
+\pgfdeclareimage[width = \paperwidth]{firstpage}{firstpage.png}
+
+% This is quite a complicated command. We basically create a "beamercolorbox" for each field and invoke the commands that we had created earlier.
+\setbeamertemplate{title page}{%\TitleLine
+  \hspace*{0mm}\vspace*{-60mm}
+      \begin{beamercolorbox}[wd=0.5\paperwidth,ht=0.13\paperwidth]{Title}
+      \pgfuseimage{firstpage}
+    \end{beamercolorbox}
+%   
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0.06\paperwidth]{Title}
+        \usebeamerfont{Title}%
+        \MyTitle  
+    \end{beamercolorbox}
+%
+      \begin{beamercolorbox}[wd=\paperwidth,ht=0.03\paperwidth]{Title}
+        \usebeamerfont{Title}%
+        \MySubTitle 
+    \end{beamercolorbox}
+%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0.06\paperwidth]{Title}
+        \usebeamerfont{Title}%
+         \MyAuthor  
+      \end{beamercolorbox}
+%
+      \begin{beamercolorbox}[wd=\paperwidth,ht=0.03\paperwidth]{Title}
+        \usebeamerfont{head/foot}%
+        \MyInstitute
+    \end{beamercolorbox}
+% 
+      \begin{beamercolorbox}[wd=\paperwidth,ht=0.07\paperwidth]{Title}
+        \usebeamerfont{Title}%
+         \MyDate
+    \end{beamercolorbox}}
